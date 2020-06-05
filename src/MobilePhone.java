@@ -58,4 +58,20 @@ public class MobilePhone {
         }
         return -1;
     }
+
+    public void setMyNumber(String myNumber) {
+        this.myNumber = myNumber;
+    }
+
+    public void setRootUser(String rootUser) {
+        this.rootUser = rootUser;
+    }
+
+    public String getMyNumber() {
+        return myNumber;
+    }
+
+    public String getRootUser() {
+        return rootUser;
+    }
 }

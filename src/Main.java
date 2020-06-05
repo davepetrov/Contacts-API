@@ -7,7 +7,9 @@ public class Main {
     private static boolean exit = false;
 
     public static void main(String[] args) {
+        welcome();
         printOptions();
+
         while (!exit) {
             System.out.println("0 - Print Available Options");
             int opt = scanner.nextInt();
@@ -60,7 +62,17 @@ public class Main {
                     phone.updateContact(contact, n_contact);
                     break;
                 case 5:
-                    //removeContact();
+                    System.out.println("Enter old contact name");
+                    name = scanner.nextLine();
+                    System.out.println("Enter old contact # ");
+                    num = scanner.nextLine();
+                    contact = new Contact(name, num);
+                    if (phone.isContact(contact) < 0) {
+                        System.out.println("Removed " + name + " from contacts");
+                    } else {
+                        System.out.println("Sorry: " + name + " is not a contact");
+
+                    }
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + opt);
@@ -68,6 +80,13 @@ public class Main {
         }
     }
 
+    private static void welcome(){
+        System.out.println("What is root user's name? ");
+        phone.setRootUser(scanner.nextLine());
+        System.out.println("What is root user's #? ");
+        phone.setMyNumber(scanner.nextLine());
+        System.out.println("Welcome "+phone.getRootUser() + "to Contacts-API");
+    }
     private static void printOptions() {
         System.out.println("0 - Print Options");
         System.out.println("1 - Quit");
