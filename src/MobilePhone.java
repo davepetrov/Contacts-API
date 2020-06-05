@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
-public static class MobilePhone {
-    private static String myNumber;
-    private static String rootUser;
+public class MobilePhone {
+    private String myNumber;
+    private String rootUser;
     private ArrayList<Contact> contacts = new ArrayList<Contact>();
 
     public MobilePhone(String myNumber, String user) {
@@ -12,8 +12,9 @@ public static class MobilePhone {
     }
 
     public void printContacts() {
-        for (int i = 0; i < this.contacts.size(); i++) {
-            System.out.println(this.contacts.get(i));
+        System.out.println("Printing Contacts");
+        for (int i = 0; i < contacts.size(); i++) {
+            System.out.println(contacts.get(i).getName() + contacts.get(i).getNumber());
         }
     }
 
@@ -25,8 +26,6 @@ public static class MobilePhone {
 
         contacts.add(contact);
         return true;
-
-
     }
 
     public boolean updateContact(Contact contact, Contact newContact) {
@@ -38,8 +37,6 @@ public static class MobilePhone {
         contacts.set(i, newContact);
         System.out.println(contact.getName() + "was updated to" + newContact.getName());
         return true;
-
-
     }
 
     public boolean removeContact(Contact contact) {
@@ -60,12 +57,5 @@ public static class MobilePhone {
             }
         }
         return -1;
-    }
-
-    public void printContacts() {
-        System.out.println("Printing Contacts");
-        for (int i = 0; i < contacts.size(); i++) {
-            System.out.println(contacts.get(i).getName() + contacts.get(i).getNumber());
-        }
     }
 }

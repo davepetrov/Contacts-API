@@ -2,15 +2,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    private Scanner scanner = new Scanner(System.in);
-    private MobilePhone phone = new MobilePhone("555 555 5555", "david");
+    private static Scanner scanner = new Scanner(System.in);
+    private static MobilePhone phone = new MobilePhone("555 555 5555", "david");
+    private static boolean exit = false;
 
-    public void main(String[] args) {
-        boolean exit=false;
+    public static void main(String[] args) {
         printOptions();
-        while (!exit){
+        while (!exit) {
             System.out.println("0 - Print Available Options");
-            String opt = scanner.nextLine();
+            int opt = scanner.nextInt();
             scanner.nextLine();
             switch (opt) {
                 case 0:
@@ -24,36 +24,36 @@ public class Main {
                     phone.printContacts();
                     break;
                 case 3:
-                    System.out.println("Enter contact name");
+                    System.out.println("Enter new contact name ");
                     String name = scanner.nextLine();
-                    System.out.println("Enter contact number");
+                    System.out.println("Enter new contact # ");
                     String num = scanner.nextLine();
                     Contact contact = new Contact(name, num);
-                    if (phone.addContact(contact)){
-                        System.out.println("Added" + name + "to contacts");
-                    } else{
-                        System.out.println("Error:" + name + "Already in contacts");
+                    if (phone.addContact(contact)) {
+                        System.out.println("Added " + name + " to contacts");
+                    } else {
+                        System.out.println("Error: " + name + " Already in contacts");
                     }
                     break;
                 case 4:
-                    System.out.println("Enter contact name");
+                    System.out.println("Enter old contact name");
                     name = scanner.nextLine();
-                    System.out.println("Enter contact number");
+                    System.out.println("Enter old contact # ");
                     num = scanner.nextLine();
                     contact = new Contact(name, num);
-                    if (phone.isContact(contact)>=0){
-                        System.out.println("Added" + name + "to contacts");
-                    } else{
-                        System.out.println("Error:" + name + "Already in contacts");
+                    if (phone.isContact(contact) >= 0) {
+                        System.out.println("Added " + name + " to contacts");
+                    } else {
+                        System.out.println("Sorry: " + name + " Already in contacts");
                         break;
                     }
-                    System.out.println("Enter new contact name");
+                    System.out.println("Enter new contact name ");
                     String n_name = scanner.nextLine();
-                    System.out.println("Enter new contact number");
+                    System.out.println("Enter new contact # ");
                     String n_num = scanner.nextLine();
                     Contact n_contact = new Contact(n_name, n_num);
-                    if (phone.isContact(n_contact)>=0){
-                        System.out.println("Error:"+n_name+"Exists in contacts already");
+                    if (phone.isContact(n_contact) >= 0) {
+                        System.out.println("Error: " + n_name + " Exists in contacts already");
                         break;
                     }
 
@@ -62,10 +62,13 @@ public class Main {
                 case 5:
                     //removeContact();
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + opt);
             }
         }
     }
-    public static void printOptions(){
+
+    private static void printOptions() {
         System.out.println("0 - Print Options");
         System.out.println("1 - Quit");
         System.out.println("2 - Print Contacts");
@@ -74,3 +77,4 @@ public class Main {
         System.out.println("5 - Remove Contact");
         System.out.println("6 - Search Contacts");
     }
+}
