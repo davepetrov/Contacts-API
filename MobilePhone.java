@@ -33,6 +33,11 @@ public class MobilePhone {
             System.out.println(contact.getName() + "does not exist in contacts");
             return false;
         }
+        else if (isContact(newContact)>=00){
+            System.out.println("Error: Contact "+newContact.getName()+" Exists as a contact.");
+            return false;
+        }
+
         int i = isContact(contact);
         contacts.set(i, newContact);
         System.out.println(contact.getName() + "was updated to" + newContact.getName());
